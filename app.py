@@ -1,23 +1,43 @@
 # coding: utf-8
-
-from datetime import datetime
-
 from flask import Flask
-from flask import render_template
+from flask import render_template, request
+import leancloud
+from leancloud import Object
+from wtforms import BooleanField
+import os
 
-from views.todos import todos_view
-
+APP_ID = os.environ.get('LC_APP_ID', 'la9ocsQBBbVDo41nn3lW2oQo-gzGzoHsz') # 你的 app id
+MASTER_KEY = os.environ.get('LC_APP_MASTER_KEY', 'RibMsUrb3rupAu0RN7jSCy8y') #  你的 master key
+leancloud.init(APP_ID, master_key=MASTER_KEY)
 app = Flask(__name__)
+engine = leancloud.Engine(app)
 
-# 动态路由
-app.register_blueprint(todos_view, url_prefix='/todos')
-
+class ClickInfo(Object):
+    pass
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    ip = request.remote_addr
+    agent = str(request.user_agent)
+    click_info = ClickInfo()
+    click_info.set('click_ip', ip)
+    click_info.set('click_agent', agent)
+    if 'Android' in agent:
+        system = 'Android'
+    elif 'Macintosh' in agent:
+        system = 'Mac'
+    elif 'iPhone' in agent:
+        system = 'iPhone'
+    elif 'windows' or 'Windows' in agent:
+        system = 'Windows'
+    else:
+        system = 'other'
+    click_info.set('system', system)
+    click_info.save()
+    query = leancloud.Query(ClickInfo)
+    count = query.count()
+    return render_template('index.html', count=count, info=agent)
 
-
-@app.route('/time')
-def time():
-    return str(datetime.now())
+@app.route('/', methods='POST')
+def submit():
+    ifgood = BooleanField('if_good', default=True)
