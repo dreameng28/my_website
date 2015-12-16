@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Python-getting-started
 
 一个简单的使用 Flask 的 Python 应用。
@@ -56,3 +57,7 @@ $ avoscloud publish
 * [Python SDK API](https://leancloud.cn/docs/api/python/index.html)
 * [命令行工具详解](https://leancloud.cn/docs/cloud_code_commandline.html)
 * [LeanEngine FAQ](https://leancloud.cn/docs/cloud_code_faq.html)
+=======
+# my_website
+我的个人网站
+>>>>>>> 2675ec4fc48bd3db3fb102ea5d954e1efc211e4e
