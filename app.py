@@ -3,7 +3,6 @@ from flask import Flask
 from flask import render_template, request
 import leancloud
 from leancloud import Object
-from wtforms import BooleanField
 import os
 
 APP_ID = os.environ.get('LC_APP_ID', 'la9ocsQBBbVDo41nn3lW2oQo-gzGzoHsz') # 你的 app id
@@ -36,8 +35,5 @@ def index():
     click_info.save()
     query = leancloud.Query(ClickInfo)
     count = query.count()
-    return render_template('index.html', count=count, info=agent)
+    return render_template('index.html', count=count, info=system)
 
-@app.route('/', methods='POST')
-def submit():
-    ifgood = BooleanField('if_good', default=True)
