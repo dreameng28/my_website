@@ -1,25 +1,33 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>这是首页,只有一页!</title>
-  </head>
-  <body>
-      <h1 style="font-family: 'Apple Braille'; color: dodgerblue">你好哇=!</h1>
-      <h3 style="font-family: 'Apple Color Emoji'; color: dimgrey ">点鸡亮: {{ count }}</h3>
-      <h5 style="font-family: 'Apple Color Emoji'; color: deeppink ">系统信息: {{ info }}</h5>
-      <img src="http://upload.movshow.com/forum/attachments/month_0506/PA123603_CqzZb5ZYCO9N.jpg" style="width: 100%"/>
-      <h3 style="font-family: 'Andale Mono'; color: green">这个网站的用户体验是不是很好呀?</h3>
-      <form>
-        <span style="color: royalblue">是的 </span>
-        <input type="radio" checked="checked" name="Sex" value="male" />
-        <br/>
-        <br/>
-        <span style="color: royalblue">不是(最好不要昧着良心说话) </span>
-        <input type="radio" name="Sex" value="female" />
-      </form>
-      <br/>
-      <button style="width: 100%; height: 40px; font-size: medium; background-color: cornflowerblue" type="submit" value="Submit" onclick="submit()"><b>提 交</b></button>
-  </body>
-</html>
+{% extends "bootstrap/base.html" %}
+{% block title %}Flasky{% endblock %}
+{% block navbar %}
+
+
+<div class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle"
+        data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Flasky</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block content %}
+
+
+
+{% endblock %}
